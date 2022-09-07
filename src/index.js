@@ -7,16 +7,24 @@ const app = express();
 
 const docs = require('./routes/docs');
 const carrinho = require('./routes/carrinho');
+const categoria = require('./routes/categoria');
+const pedido = require('./routes/pedido');
+const produto = require('./routes/produto');
+const usuario = require('./routes/usuario');
 
 app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-    res.send({ message:"hello world" });
+    res.send({ message:"Bem vindo a API do Market Place, para acessar a documentação use a rota /docs/api-docs" });
 });
 
 app.use('/docs', docs);
 app.use('/carrinho', carrinho);
+app.use('/categoria', categoria);
+app.use('/pedido', pedido);
+app.use('/produto', produto);
+app.use('/usuario', usuario);
 
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
