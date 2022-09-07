@@ -8,7 +8,7 @@ const PedidoSchema = new mongooose.Schema({
         quantidade: { type: Number, required: true}
     },
   ],
-  dataCompra: { type: Date, required: true },
+  dataCompra: { type: Date, required: true, default: Date.now },
   precoTotal: { type: Number, required: true },
   frete: { type: Number, required: true },
 });

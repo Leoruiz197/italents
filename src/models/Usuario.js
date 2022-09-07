@@ -24,7 +24,7 @@ const UsuarioSchema = new mongooose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref:'Carrinhos'
   },
-  admin: {type: Boolean,required: true }
+  admin: {type: Boolean, required: true, default: false }
 });
 
 const Usuario = mongooose.model('Usuarios', UsuarioSchema);
