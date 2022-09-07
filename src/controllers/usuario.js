@@ -8,8 +8,13 @@ const findUsuarioByIdController = (req, res) => {
   res.send({ message: 'achado com sucesso!' });
 };
 
-const createUsuarioController = (req, res) => {
-  res.send({ message: 'criado com sucesso!' });
+const createUsuarioController = async (req, res) => {
+  try{
+    res.send(await usuarioService.createUsuarioService(req.body));
+  } catch (err) {
+    res.status(500).send({ message: "Erro inesperado, tente novamente mais tarde"});
+    console.log(err.message);
+  }
 };
 
 const updateUsuarioController = (req, res) => {
