@@ -1,0 +1,12 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API Market Place",
+      "description": "API para CRUD do Market Place e carrinho de compras",
+      "termsOfService": "",
+      "contact": {
+        "email": "leo@email.com.br"
+      },
+      "version": "1.0.0"
+    }
+}
