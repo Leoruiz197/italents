@@ -9,8 +9,6 @@ const findUsuarioByIdService = (id) => {
 };
 
 const createUsuarioService = async (body) => {
-  body.created = new Date();
-  console.log(body);
   return await Usuario.create(body);
 };
 

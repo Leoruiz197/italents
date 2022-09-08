@@ -6,6 +6,7 @@ const UsuarioSchema = new mongoose.Schema({
   senha: { type: String, required: true },
   imagem: { type: String, required: true },
   enderecos: [{ type: Array, required: true }],
+  createdAt: {type: Date, required: true},
   produtos_fav: [
     {
       type: mongoose.Schema.Types.ObjectId,

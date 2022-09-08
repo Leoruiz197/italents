@@ -1,5 +1,6 @@
 const usuarioService = require('../services/usuario');
 const { v4: uuidv4 } = require('uuid');
+const bcrypt = require ('bcrypt');
 
 const findAllUsuarioController = async (req, res) => {
   try{
@@ -21,7 +22,12 @@ const findUsuarioByIdController = async (req, res) => {
 
 const createUsuarioController = async (req, res) => {
   try{
-    res.send(await usuarioService.createUsuarioService(req.body));
+    const corpo = {
+      ...req.body,
+      senha: await bcrypt.hash(req.body.senha, 10),
+      createdAt: new Date(),
+    }
+    res.send(await usuarioService.createUsuarioService(corpo));
   } catch (err) {
     res.status(500).send({ message: "Erro inesperado, tente novamente mais tarde"});
     console.log(err.message);
