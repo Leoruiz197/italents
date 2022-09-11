@@ -36,7 +36,11 @@ const createUsuarioController = async (req, res) => {
 
 const updateUsuarioController = async (req, res) => {
   try{
-    res.send(await usuarioService.updateUsuarioService(req.params.id, req.body));
+    const corpo = {
+      ...req.body,
+      senha: await bcrypt.hash(req.body.senha, 10),
+    }
+    res.send(await usuarioService.updateUsuarioService(req.params.id, corpo));
   } catch (err) {
     res.status(500).send({ message: "Erro inesperado, tente novamente mais tarde"});
     console.log(err.message);

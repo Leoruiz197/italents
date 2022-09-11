@@ -13,7 +13,10 @@ const createUsuarioService = async (body) => {
 };
 
 const updateUsuarioService = async (id, body) => {
-  return await Usuario.updateOne({ where: id }, body, { returnDocument: "after" });
+  const corpo =  await Usuario.updateOne({ where: id }, body, { returnDocument: "after" });
+  //arrumar aqui
+  console.log(corpo);
+  return corpo;
 };
 
 const deleteUsuarioService = async (id) => {

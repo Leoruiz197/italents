@@ -1,6 +1,6 @@
-const mongooose = require('mongoose');
+const mongoose = require('mongoose');
 
-const CarrinhoSchema = new mongooose.Schema({
+const CarrinhoSchema = new mongoose.Schema({
   produtos: [
     {
         type: mongoose.Schema.Types.ObjectId,
@@ -13,6 +13,6 @@ const CarrinhoSchema = new mongooose.Schema({
   frete: { type: Number, required: true },
 });
 
-const Carrinho = mongooose.model('Carrinhos', CarrinhoSchema);
+const Carrinho = mongoose.model('Carrinhos', CarrinhoSchema);
 
 module.exports = Carrinho;
