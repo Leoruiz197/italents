@@ -1,6 +1,5 @@
 const usuarioService = require('../services/usuario');
 const { v4: uuidv4 } = require('uuid');
-const bcrypt = require ('bcrypt');
 
 const findAllUsuarioController = async (req, res) => {
   try{
@@ -24,7 +23,6 @@ const createUsuarioController = async (req, res) => {
   try{
     const corpo = {
       ...req.body,
-      senha: await bcrypt.hash(req.body.senha, 10),
       createdAt: new Date(),
     }
     res.send(await usuarioService.createUsuarioService(corpo));
@@ -36,11 +34,7 @@ const createUsuarioController = async (req, res) => {
 
 const updateUsuarioController = async (req, res) => {
   try{
-    const corpo = {
-      ...req.body,
-      senha: await bcrypt.hash(req.body.senha, 10),
-    }
-    res.send(await usuarioService.updateUsuarioService(req.params.id, corpo));
+    res.send(await usuarioService.updateUsuarioService(req.params.id, req.body));
   } catch (err) {
     res.status(500).send({ message: "Erro inesperado, tente novamente mais tarde"});
     console.log(err.message);

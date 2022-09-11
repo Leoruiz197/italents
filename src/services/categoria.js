@@ -13,7 +13,7 @@ const createCategoriaService = async (body) => {
 };
 
 const updateCategoriaService = async (id, body) => {
-  return await Categoria.updateOne({ where: id }, body, { returnDocument: "after" });
+  return await Categoria.findByIdAndUpdate(id , body, { returnDocument: "after" });
 };
 
 const deleteCategoriaService = async (id) => {

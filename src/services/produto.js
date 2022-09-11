@@ -13,7 +13,7 @@ const createProdutoService = async (body) => {
 };
 
 const updateProdutoService = async (id, body) => {
-  return await Produto.updateOne({ where: id }, body, { returnDocument: "after" });
+  return await Produto.findByIdAndUpdate({ where: id }, body, { returnDocument: "after" });
 };
 
 const deleteProdutoService = async (id) => {

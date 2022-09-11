@@ -13,9 +13,8 @@ const createUsuarioService = async (body) => {
 };
 
 const updateUsuarioService = async (id, body) => {
-  const corpo =  await Usuario.updateOne({ where: id }, body, { returnDocument: "after" });
-  //arrumar aqui
-  console.log(corpo);
+  const corpo =  await Usuario.findByIdAndUpdate(id, body, { returnDocument: "after" });
+  //arrumar senha
   return corpo;
 };
 
