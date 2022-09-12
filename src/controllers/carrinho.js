@@ -47,7 +47,7 @@ const deleteCarrinhoController = async (req, res) => {
     if(del.deletedCount > 0 ){
       res.status(200).send({ message: 'deletado com sucesso!' });
     }else{
-      res.status(404).send({ message: 'Usuario não encontrado para deletar' });
+      res.status(404).send({ message: 'Carrinho não encontrado para deletar' });
     }
   } catch (err) {
     res.status(500).send({ message: "Erro inesperado, tente novamente mais tarde"});

@@ -5,17 +5,17 @@ const findAllProdutoController = async (req, res) => {
   const limit = req.query.limit;
 
   const produtos = await produtoService.findProdutoService(offset, limit);
-  const total = await produtoService.countProdutos();
+  //const total = await produtoService.countProdutos();
 
-  const currentUrl = req.baseUrl;
+  //const currentUrl = req.baseUrl;
 
-  const next = offset + limit;
-  const nextUrl = next < total ? `${currentUrl}?limit=${limit}&offset=${next}` : null;
+  //const next = offset + limit;
+  //const nextUrl = next < total ? `${currentUrl}?limit=${limit}&offset=${next}` : null;
 
-  const previous = offset - limit < 0 ? null : offset - limit;
-  const previousUrl = previous != null ? `${currentUrl}?limit=${limit}&offset=${previous}` : null;
+  //const previous = offset - limit < 0 ? null : offset - limit;
+  //const previousUrl = previous != null ? `${currentUrl}?limit=${limit}&offset=${previous}` : null;
 
-  console.log(previousUrl);
+  //console.log(previousUrl);
   res.send(produtos);
 };
 
@@ -57,7 +57,7 @@ const deleteProdutoController = async (req, res) => {
     if(del.deletedCount > 0 ){
       res.status(200).send({ message: 'deletado com sucesso!' });
     }else{
-      res.status(404).send({ message: 'Usuario não encontrado para deletar' });
+      res.status(404).send({ message: 'Produto não encontrado para deletar' });
     }
   } catch (err) {
     res.status(500).send({ message: "Erro inesperado, tente novamente mais tarde"});

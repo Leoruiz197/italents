@@ -3,6 +3,7 @@ const router = express.Router();
 
 const carrinhoController = require('../controllers/carrinho');
 
+router.get('/findAll', carrinhoController.findAllCarrinhoController);
 router.get('/find/:id', carrinhoController.findCarrinhoByIdController);
 router.post('/create', carrinhoController.createCarrinhoController);
 router.put('/update/:id', carrinhoController.updateCarrinhoController);

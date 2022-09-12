@@ -14,16 +14,6 @@ const UsuarioSchema = new mongoose.Schema({
       ref: "Produtos",
     },
   ],
-  pedidos: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Pedidos",
-    },
-  ],
-  carrinho: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Carrinhos",
-  },
   admin: { type: Boolean, required: true, default: false },
 });
 

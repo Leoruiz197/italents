@@ -13,7 +13,7 @@ const createCarrinhoService = async (body) => {
 };
 
 const updateCarrinhoService = async (id, body) => {
-  return await Carrinho.updateOne({ where: id }, body, { returnDocument: "after" });
+  return await Carrinho.findByIdAndUpdate(id, body, { returnDocument: "after" });
 };
 
 const deleteCarrinhoService = async (id) => {

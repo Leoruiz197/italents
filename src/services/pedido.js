@@ -13,7 +13,7 @@ const createPedidoService = async (body) => {
 };
 
 const updatePedidoService = async (id, body) => {
-  return await Pedido.updateOne({ where: id }, body, { returnDocument: "after" });
+  return await Pedido.findByIdAndUpdate(id, body, { returnDocument: "after" });
 };
 
 const deletePedidoService = async (id) => {
