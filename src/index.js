@@ -6,6 +6,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 const connectToDatabase = require("./database/database");
 
+const auth = require("./routes/auth");
 const docs = require("./routes/docs");
 const carrinho = require("./routes/carrinho");
 const categoria = require("./routes/categoria");
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
   });
 });
 
+app.use("/auth", auth);
 app.use("/docs", docs);
 app.use("/carrinho", carrinho);
 app.use("/categoria", categoria);
