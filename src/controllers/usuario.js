@@ -62,6 +62,7 @@ const addUserEnderecoController = async (req,res) =>{
     req.body.created = new Date();
     const endereco = await usuarioService.addUserEnderecoService(req.params.id,req.body);
 
+    console.log(endereco)
     if(endereco.ok == 1){
       res.status(200).send({ message: 'endereco adicionado com sucesso' });  
     }else{

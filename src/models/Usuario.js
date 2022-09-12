@@ -6,7 +6,14 @@ const UsuarioSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true },
   senha: { type: String, required: true },
   imagem: { type: String, required: true },
-  enderecos: [{ type: Array, required: true }],
+  enderecos: [
+    { 
+      rua:{ type: String, require:true},
+      numero:{ type: Number, require:true},
+      complemento:{ type: String, require:false},
+      CEP:{ type: String, require:true}
+    }
+  ],
   createdAt: {type: Date, required: true},
   produtos_fav: [
     {
@@ -18,13 +25,21 @@ const UsuarioSchema = new mongoose.Schema({
 });
 
 UsuarioSchema.pre("save", async function (next) {
-  this.senha = await bcrypt.hash(this.senha, 10);
+  console.log("aqui");
+  if(this.senha){
+    this.senha = await bcrypt.hash(this.senha, 10);
+  }
   next();
 });
 
 UsuarioSchema.pre("findOneAndUpdate", async function (next) {
-  this.senha = await bcrypt.hash(this.senha, 10);
-  console.log(this.senha);
+  const docToUpdate = await this.model.findOne(this.getQuery());
+  console.log(docToUpdate.senha);
+  if (docToUpdate.senha !== this._update.senha) {
+    const newPassword = await bcrypt.hash(this._update.senha, 10)
+    this._update.senha = newPassword
+  }
+  console.log(docToUpdate.senha);
   next();
 });
 

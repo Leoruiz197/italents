@@ -22,7 +22,7 @@ const deleteUsuarioService = async (id) => {
   return Usuario.deleteOne({ where: id });
 };
 
-const addUserEnderecoService = async (id, endereco) =>
+const addUserEnderecoService = (id, endereco) =>
   Usuario.findOneAndUpdate(
     {
       _id: id,
@@ -37,7 +37,7 @@ const addUserEnderecoService = async (id, endereco) =>
     }
   );
 
-const removeUserEnderecoService = async (id, idEndereco) =>
+const removeUserEnderecoService = (id, idEndereco) =>
   Usuario.findOneAndUpdate(
     {
       _id: id,
