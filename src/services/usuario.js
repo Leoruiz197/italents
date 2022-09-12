@@ -13,7 +13,9 @@ const createUsuarioService = async (body) => {
 };
 
 const updateUsuarioService = async (id, body) => {
-  return await Usuario.updateOne({ where: id }, body, { returnDocument: "after" });
+  const corpo =  await Usuario.findByIdAndUpdate(id, body, { returnDocument: "after" });
+  //arrumar senha
+  return corpo;
 };
 
 const deleteUsuarioService = async (id) => {

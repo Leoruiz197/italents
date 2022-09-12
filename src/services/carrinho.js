@@ -1,21 +1,23 @@
-const findCarrinhoService = () => {
-  return "";
+const Carrinho = require("../models/Carrinho");
+
+const findCarrinhoService = async () => {
+  return await Carrinho.find();
 };
 
-const findCarrinhoByIdService = () => {
-  return "";
+const findCarrinhoByIdService = async (id) => {
+  return await Carrinho.findById(id);
 };
 
-const createCarrinhoService = () => {
-  return "";
+const createCarrinhoService = async (body) => {
+  return await Carrinho.create(body);
 };
 
-const updateCarrinhoService = () => {
-  return "";
+const updateCarrinhoService = async (id, body) => {
+  return await Carrinho.updateOne({ where: id }, body, { returnDocument: "after" });
 };
 
-const deleteCarrinhoService = () => {
-  return "";
+const deleteCarrinhoService = async (id) => {
+  return await Carrinho.deleteOne({ where: id });
 };
 
 module.exports = {
@@ -23,5 +25,5 @@ module.exports = {
   findCarrinhoByIdService,
   createCarrinhoService,
   updateCarrinhoService,
-  deleteCarrinhoService,
+  deleteCarrinhoService
 };

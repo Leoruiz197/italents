@@ -1,6 +1,6 @@
-const mongooose = require('mongoose');
+const mongoose = require('mongoose');
 
-const PedidoSchema = new mongooose.Schema({
+const PedidoSchema = new mongoose.Schema({
   produtos: [
     {
         type: mongoose.Schema.Types.ObjectId,
@@ -13,6 +13,6 @@ const PedidoSchema = new mongooose.Schema({
   frete: { type: Number, required: true },
 });
 
-const Pedido = mongooose.model('Pedidos', PedidoSchema);
+const Pedido = mongoose.model('Pedidos', PedidoSchema);
 
 module.exports = Pedido;
