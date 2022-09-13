@@ -45,7 +45,42 @@ const removeUserEnderecoService = (id, idEndereco) =>
     {
       $pull: {
         enderecos: {
-          id: idEndereco,
+          _id: idEndereco,
+        },
+      },
+    },
+    {
+      rawResult: true,
+    }
+  );
+
+const addUserFavProdutoService = (id,produto) =>
+  Usuario.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    {
+      $push: {
+        produtos_fav:{
+          _id: produto._id,
+          createdAt: produto.createdAt
+        }
+      },
+    },
+    {
+      rawResult: true,
+    }
+  );
+
+const removeUserFavProdutoService = (produto) =>
+  Usuario.findOneAndUpdate(
+    {
+      _id: produto.id,
+    },
+    {
+      $pull: {
+        produtos_fav: {
+          _id: produto.idProduto,
         },
       },
     },
@@ -61,5 +96,7 @@ module.exports = {
   updateUsuarioService,
   deleteUsuarioService,
   addUserEnderecoService,
-  removeUserEnderecoService
+  removeUserEnderecoService,
+  addUserFavProdutoService,
+  removeUserFavProdutoService
 };

@@ -58,8 +58,8 @@ const deleteUsuarioController = async (req, res) => {
 
 const addUserEnderecoController = async (req,res) =>{
   try{
-    req.body.id = uuidv4();
-    req.body.created = new Date();
+    //req.body.id = uuidv4();
+    req.body.createdAt = new Date();
     const endereco = await usuarioService.addUserEnderecoService(req.params.id,req.body);
 
     console.log(endereco)
@@ -77,10 +77,44 @@ const addUserEnderecoController = async (req,res) =>{
 
 const removeUserEnderecoController = async (req,res) =>{
   try{
-    const endereco = await usuarioService.removeUserEnderecoService(req.query.id,req.query.idEndereco);
+    const endereco = await usuarioService.removeUserEnderecoService(req.body.id,req.body.idEndereco);
 
     if(endereco.ok == 1){
       res.status(200).send({ message: 'endereco removido com sucesso' });  
+    }else{
+      res.status(400).send({ message: 'algo deu errado, tente novamente' });  
+    }
+   
+  } catch (err) {
+    res.status(500).send({ message: "Erro inesperado, tente novamente mais tarde"});
+    console.log(err.message);
+  }
+}
+
+const addUserFavProdutoController = async (req,res) =>{
+  try{
+    req.body.createdAt = new Date();
+    const produto = await usuarioService.addUserFavProdutoService(req.params.id,req.body);
+
+    console.log(produto)
+    if(produto.ok == 1){
+      res.status(200).send({ message: 'produto favorito adicionado com sucesso' });  
+    }else{
+      res.status(400).send({ message: 'algo deu errado, tente novamente' });  
+    }
+   
+  } catch (err) {
+    res.status(500).send({ message: "Erro inesperado, tente novamente mais tarde"});
+    console.log(err.message);
+  }
+}
+
+const removeUserFavProdutoController = async (req,res) =>{
+  try{
+    const produto = await usuarioService.removeUserFavProdutoService(req.body);
+
+    if(produto.ok == 1){
+      res.status(200).send({ message: 'produto favorito removido com sucesso' });  
     }else{
       res.status(400).send({ message: 'algo deu errado, tente novamente' });  
     }
@@ -98,5 +132,7 @@ module.exports = {
     updateUsuarioController,
     deleteUsuarioController,
     addUserEnderecoController,
-    removeUserEnderecoController
+    removeUserEnderecoController,
+    addUserFavProdutoController,
+    removeUserFavProdutoController
 };
