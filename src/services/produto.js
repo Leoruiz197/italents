@@ -20,10 +20,47 @@ const deleteProdutoService = async (id) => {
   return await Produto.deleteOne({ where: id });
 };
 
+const addCategoriaProdutoService = (id,categoria) =>
+  Produto.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    {
+      $push: {
+        categoria:{
+          _id: categoria._id,
+          createdAt: categoria.createdAt
+        }
+      },
+    },
+    {
+      rawResult: true,
+    }
+  );
+
+const removeCategoriaProdutoService = (categoria) =>
+  Produto.findOneAndUpdate(
+    {
+      _id: categoria.id,
+    },
+    {
+      $pull: {
+        categoria: {
+          _id: categoria.idCategoria,
+        },
+      },
+    },
+    {
+      rawResult: true,
+    }
+  );
+
 module.exports = {
   findProdutoService,
   findProdutoByIdService,
   createProdutoService,
   updateProdutoService,
-  deleteProdutoService
+  deleteProdutoService,
+  addCategoriaProdutoService,
+  removeCategoriaProdutoService
 };
