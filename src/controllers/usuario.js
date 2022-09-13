@@ -62,7 +62,6 @@ const addUserEnderecoController = async (req,res) =>{
     req.body.createdAt = new Date();
     const endereco = await usuarioService.addUserEnderecoService(req.params.id,req.body);
 
-    console.log(endereco)
     if(endereco.ok == 1){
       res.status(200).send({ message: 'endereco adicionado com sucesso' });  
     }else{
@@ -96,8 +95,7 @@ const addUserFavProdutoController = async (req,res) =>{
     req.body.createdAt = new Date();
     const produto = await usuarioService.addUserFavProdutoService(req.params.id,req.body);
 
-    console.log(produto)
-    if(produto.ok == 1){
+    if(produto.ok == 1 && produto.value != null){
       res.status(200).send({ message: 'produto favorito adicionado com sucesso' });  
     }else{
       res.status(400).send({ message: 'algo deu errado, tente novamente' });  
@@ -113,7 +111,7 @@ const removeUserFavProdutoController = async (req,res) =>{
   try{
     const produto = await usuarioService.removeUserFavProdutoService(req.body);
 
-    if(produto.ok == 1){
+    if(produto.ok == 1 && produto.value != null){
       res.status(200).send({ message: 'produto favorito removido com sucesso' });  
     }else{
       res.status(400).send({ message: 'algo deu errado, tente novamente' });  
