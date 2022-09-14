@@ -22,6 +22,7 @@ const createPedidoController = async (req, res) => {
   try{
     const corpo = {
       ...req.body,
+      userId: req.userId,
       createdAt: new Date(),
     }
     res.send(await pedidoService.createPedidoService(corpo));
