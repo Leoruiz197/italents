@@ -10,4 +10,5 @@ router.post('/create', authMiddleware, pedidoController.createPedidoController);
 router.put('/update/:id', authMiddleware, pedidoController.updatePedidoController);
 router.delete('/delete/:id', authMiddleware, pedidoController.deletePedidoController);
 
+//atualiza status
 module.exports = router;
