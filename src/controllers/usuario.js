@@ -1,5 +1,4 @@
 const usuarioService = require('../services/usuario');
-const { v4: uuidv4 } = require('uuid');
 
 const findAllUsuarioController = async (req, res) => {
   try{
@@ -12,8 +11,19 @@ const findAllUsuarioController = async (req, res) => {
 
 const findUsuarioByIdController = async (req, res) => {
   try{
-    res.send(await usuarioService.findUsuarioByIdService(req.params.id));
+    const user = await usuarioService.findUsuarioByIdService(req.params.id);
+
+    if(!user){
+      res.status(404).send({message: "Usuário não encontrado, tente novamente!"});
+    }else{
+      res.status(200).send(user);
+    }
+    
   } catch (err) {
+    if(err){
+      console.log(err.kind == "ObjectId");
+      return res.status(400).send({message: "ID informado está errado, tente novamente"});
+    }
     res.status(500).send({ message: "Erro inesperado, tente novamente mais tarde"});
     console.log(err.message);
   }

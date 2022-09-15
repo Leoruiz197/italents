@@ -6,25 +6,28 @@ API Market Place desenvolvido para implementação de todos os conceitos estudad
 
 ### Usuarios
 
-  Todos os endpoints relacionados com usuario
+Todos os endpoints relacionados com usuario
 
-  /findAll
+/findAll
 
-  Retorna todos os usuarios presentes no banco de dados
-    - 200
+Retorna todos os usuarios presentes no banco de dados
+
+- 200
   Ok, retorno completo
-    - 404
-    Usuarios nao encontrados
+- 404
+  Usuarios nao encontrados
 
-  /find/:id
+/find/:id
 
-  Retorna um usuario especifico ao passarmos um ID correto por parametro
-
-  - 200
+Retorna um usuario especifico ao passarmos um ID correto por parametro
 
 
-  - 400
+| Codigo HTTP | Mensagem  | Retorno                                                 |
+| ------------- | ----------- | --------------------------------------------------------- |
+| 200         | OK        | OBJ usuario completo                                    |
+| 404         | Not Found | {message: "Usuário não encontrado, tente novamente!"} |
+| 400         | Bad Request | {message: "ID informado está errado, tente novamente"} |
 
 ### Produtos
 
-  Todos os endpoints relacionados com produtos
+Todos os endpoints relacionados com produtos
