@@ -15,6 +15,19 @@ const validaUsuario = (req, res, next) => {
     return next();
 } 
 
+const validaEndereco = (req, res, next) => {
+    if(!req.body.rua){
+        return res.status(400).send({ message: "O campo rua deve ser preenchido"});
+    }
+    if(!req.body.numero){
+        return res.status(400).send({ message: "O campo numero deve ser preenchido"});
+    }
+    if(!req.body.CEP){
+        return res.status(400).send({ message: "O campo CEP deve ser preenchido"});
+    }
+    return next();
+}
+
 const validaProduto = (req, res, next) => {
     if(!req.body.nome){
         return res.status(400).send({ message: "O campo nome deve ser preenchido"});
@@ -34,7 +47,26 @@ const validaProduto = (req, res, next) => {
     return next();
 }
 
+const validaPedido = (req, res, next) => {
+    let campos = "";
+
+    if(!req.body.precoTotal){
+        campos += "precoTotal ";
+    }
+    if(!req.body.frete){
+        campos += "frete ";
+    }
+
+    if(campos != ""){
+        return res.status(400).send({message: `O(s) campo(s) ${campos}, deve(m) ser preenchido(s)`})
+    }
+
+    return next();
+}
+
 module.exports = {
     validaUsuario,
-    validaProduto
+    validaEndereco,
+    validaProduto,
+    validaPedido
 }

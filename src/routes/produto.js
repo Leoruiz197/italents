@@ -8,10 +8,10 @@ const { validaProduto } = require("../middlewares/validacao");
 router.get('/findAll',authMiddleware, produtoController.findAllProdutoController);
 router.get('/find/:id', authMiddleware, produtoController.findProdutoByIdController);
 
-router.post('/create', validaProduto, authMiddleware, produtoController.createProdutoController);
+router.post('/create', authMiddleware, validaProduto, produtoController.createProdutoController);
 router.post('/addCategoria/:id', authMiddleware, produtoController.addCategoriaProdutoController);
 
-router.put('/update/:id', validaProduto, authMiddleware, produtoController.updateProdutoController);
+router.put('/update/:id',authMiddleware, validaProduto, produtoController.updateProdutoController);
 
 router.delete('/delete/:id', authMiddleware, produtoController.deleteProdutoController);
 router.delete('/removeCategoria/', authMiddleware, produtoController.removeCategoriaProdutoController);
