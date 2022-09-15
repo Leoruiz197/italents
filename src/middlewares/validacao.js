@@ -63,10 +63,31 @@ const validaPedido = (req, res, next) => {
 
     return next();
 }
+const validaCategoria = (req, res, next) => {
+    
+    if(!req.body.nome){
+        return res.status(400).send({ message: "O campo nome deve ser preenchido"});
+    }
+
+    return next();
+}
+
+const validaCarrinho = (req, res, next) => {
+    if(!req.body.precoTotal){
+        return res.status(400).send({ message: "O campo precoTotal deve ser preenchido"});
+    }
+    if(!req.body.frete){
+        return res.status(400).send({ message: "O campo frete deve ser preenchido"});
+    }
+
+    return next();
+}
 
 module.exports = {
     validaUsuario,
     validaEndereco,
     validaProduto,
-    validaPedido
+    validaPedido,
+    validaCategoria,
+    validaCarrinho
 }
