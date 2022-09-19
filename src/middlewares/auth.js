@@ -35,7 +35,6 @@ module.exports = async (req, res, next) => {
     }
     
     req.userId = decoded.id; 
-    console.log("User Id: " + decoded.id)
       
     return next(); 
   });
