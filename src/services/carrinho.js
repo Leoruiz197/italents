@@ -17,7 +17,7 @@ const updateCarrinhoService = async (id, body) => {
 };
 
 const deleteCarrinhoService = async (id) => {
-  return await Carrinho.deleteOne({ where: id });
+  return await Carrinho.findByIdAndRemove(id);
 };
 
 module.exports = {

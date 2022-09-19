@@ -19,7 +19,7 @@ const updateUsuarioService = async (id, body) => {
 };
 
 const deleteUsuarioService = async (id) => {
-  return Usuario.deleteOne({ where: id });
+  return Usuario.findByIdAndRemove(id);
 };
 
 const addUserEnderecoService = (id, endereco) =>
