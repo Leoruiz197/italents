@@ -17,7 +17,7 @@ const updatePedidoService = async (id, body) => {
 };
 
 const deletePedidoService = async (id) => {
-  return await Pedido.deleteOne({ where: id });
+  return await Pedido.findByIdAndRemove(id);
 };
 
 module.exports = {

@@ -17,7 +17,7 @@ const updateCategoriaService = async (id, body) => {
 };
 
 const deleteCategoriaService = async (id) => {
-  return await Categoria.deleteOne({ where: id });
+  return await Categoria.findByIdAndRemove(id);
 };
 
 module.exports = {

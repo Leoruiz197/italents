@@ -46,7 +46,7 @@ const deleteCarrinhoController = async (req, res) => {
   try{
     const del = await carrinhoService.deleteCarrinhoService(req.params.id);
 
-    if(del.deletedCount > 0 ){
+    if(del != null ){
       res.status(200).send({ message: 'deletado com sucesso!' });
     }else{
       res.status(404).send({ message: 'Carrinho não encontrado para deletar' });

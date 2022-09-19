@@ -55,13 +55,13 @@ const deleteProdutoController = async (req, res) => {
   try{
     const del = await produtoService.deleteProdutoService(req.params.id);
 
-    if(del.deletedCount > 0 ){
+    if(del != null ){
       res.status(200).send({ message: 'deletado com sucesso!' });
     }else{
       res.status(404).send({ message: 'Produto não encontrado para deletar' });
     }
   } catch (err) {
-    res.status(500).send({ message: "Erro inesperado, tente novamente mais tarde"});
+    res.status(500).send({ message: "Erro inesperado, tente novamente mais tarde" });
     console.log(err.message);
   }
 };

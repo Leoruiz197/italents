@@ -45,7 +45,7 @@ const deletePedidoController = async (req, res) => {
   try{
     const del = await pedidoService.deletePedidoService(req.params.id);
 
-    if(del.deletedCount > 0 ){
+    if(del != null ){
       res.status(200).send({ message: 'deletado com sucesso!' });
     }else{
       res.status(404).send({ message: 'Pedido não encontrado para deletar' });
